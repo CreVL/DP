@@ -11,5 +11,6 @@
     <orderEntry type="library" name="mysql.connector.java" level="project" />
     <orderEntry type="library" name="apache.poi" level="project" />
     <orderEntry type="library" name="apache.poi.ooxml" level="project" />
+    <orderEntry type="library" name="github.lgooddatepicker.LGoodDatePicker" level="project" />
   </component>
 </module>

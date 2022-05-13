@@ -23,6 +23,12 @@ public class Employee {
     public String getFIO(){
         return getSurname() + " " + getName() + " " + getPatronymic();
     }
+    public String getFullDescription(){
+        return getFIO() +
+                ", " + getPost() +
+                (title == null || title.isEmpty() ? "" : ", " + getTitle())+
+                (degree == null || degree.isEmpty() ? "" : ", " + getDegree());
+    }
 
     public int getIdEmployee() {
         return idEmployee;

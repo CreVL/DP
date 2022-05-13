@@ -23,21 +23,21 @@ public class TableForm extends BaseForm {
     private JTextField tfSecretary;
     private JButton studentButton;
     private JTable table1;
+    private Gak gak;
 
     private CustomTableModel<Gak> model;
 
     public TableForm(){
         super(800,600);
         setContentPane(mainPanel);
-        studentButton.addActionListener(e-> new StudentForm());
+        studentButton.addActionListener(e-> new StudentForm(gak));
 
         model = new CustomTableModel<>(
                 new ArrayList<>(),
                 Gak.class,
-                new String[] { "idGAK", "order_number", "order_date", "chairman", "secretary"}
+                new String[] { "№", "Номер протокола", "Дата протокола", "Председатель ГЭК","Номер протокола","Дата протокола","Секретарь ГЭК","Номер протокола","Дата протокола"}
         );
         table1.setModel(model);
-
 
         updateSearch();
         tfDate.getDocument().addDocumentListener(new DocumentListener() {
@@ -78,9 +78,10 @@ public class TableForm extends BaseForm {
             public void mouseClicked(MouseEvent e) {
                 Gak g = model.getList().get(table1.rowAtPoint(e.getPoint()));
                 if (g == null) return;
+                gak = g;
 
-                tfChairman.setText(g.getChairman());
-                tfSecretary.setText(g.getSecretary());
+                tfChairman.setText(g.getChairman().getFIO());
+                tfSecretary.setText(g.getSecretary().getFIO());
             }
         });
 

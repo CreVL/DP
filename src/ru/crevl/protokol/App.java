@@ -40,28 +40,7 @@ public class App {
             if (value instanceof javax.swing.plaf.FontUIResource)
                 UIManager.put(key, new javax.swing.plaf.FontUIResource("Arial", Font.TRUETYPE_FONT, 12));
         }
-
-
-        try {
-            XWPFDocument doc = new XWPFDocument(Objects.requireNonNull(ProtectionForm.class.getClassLoader().getResourceAsStream("protocol.docx")));
-
-            Map<String, String> repl = new HashMap<>();
-            repl.put("DATE", "01.01.0001");
-            repl.put("PR0N", "1");
-            repl.put("PR0D", "2");
-            repl.put("GCF", "Иванов Иван Иванович");
-            repl.put("PRGCN", "999-1");
-            repl.put("PRGCD", "02.02.2002");
-            repl.put("LR", "X");
-            repl.put("LE", "");
-            repl.put("QUESTIONS", "ajdfhf oiyew nfoiyewg fiyewgfoi ewgfoi yewgoiyf goiyfg iewfg oiyew goifewy gfoiewyfoewy fvoewyfvoiyewvf oiewvf oyewv fpiew fpioewvofygewvofygew oufewvpy fvewpif vewof vewouf vewof voiewyfvoewiyfg ouew fgpoew few vfoiewv oif vewof ewfo ewif gewif vewfvewo9fewovfew ofoew fef");
-            DocumentWorker.replaceMap(doc, repl);
-
-            doc.write(new FileOutputStream(new File("C:\\Users\\Влад\\Desktop\\DP BD\\out.docx")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        //new TableForm();
+        new TableForm();
     }
 
     public static Connection getConnection() throws SQLException {

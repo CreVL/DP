@@ -32,19 +32,28 @@ public class StudentForm extends BaseForm {
 
     private CustomTableModel<Student> model;
 
+    private Student student;
 
-    public StudentForm() {
+    private Gak gak;
+
+
+    public StudentForm(Gak g) {
         super(800,600);
         setContentPane(mainPanel);
 
             model = new CustomTableModel<>(
                     new ArrayList<>(),
                     Student.class,
-                    new String[] { "ISU", "surname", "name", "patron", "group"}
+                    new String[] { "Номер ISU", "Фамилия", "Имя", "Отчество", "Группа"}
             );
+            gak = g;
         table1.setModel(model);
 
-        performButton.addActionListener(e-> new ProtectionForm());
+        performButton.addActionListener(e-> {
+            if (student == null) return;
+            new ProtectionForm(student,gak);
+
+        });
         
         cancelButton.addActionListener(e -> dispose());
 
@@ -73,7 +82,7 @@ public class StudentForm extends BaseForm {
                 Student s = model.getList().get(table1.rowAtPoint(e.getPoint()));
                 if (s == null) return;
 
-
+                student = s;
 
                 Group g = s.getGroup();
                 Program p = g.getProgram();

@@ -8,17 +8,27 @@ import java.util.Date;
 public class Gak {
     private int idGak;
     private String orderNumber;
-    private String orderDate;
-    private String chairman;
-    private String secretary;
+    private Date orderDate;
+    private Employee chairman;
+    private String chairmanOrderNumber;
+    private Date chairmanOrderDate;
+    private Employee secretary;
+    private String secretaryOrderNumber;
+    private Date secretaryOrderDate;
 
-    public Gak(int idGak, String orderNumber, String orderDate, int chairman, int secretary) {
+
+    public Gak(int idGak, String orderNumber, Date orderDate, int chairman, String chairmanOrderNumber, Date chairmanOrderDate, int secretary, String secretaryOrderNumber, Date secretaryOrderDate) {
         this.idGak = idGak;
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
+        this.chairmanOrderNumber = chairmanOrderNumber;
+        this.chairmanOrderDate = chairmanOrderDate;
+        this.secretaryOrderNumber = secretaryOrderNumber;
+        this.secretaryOrderDate = secretaryOrderDate;
+
         try {
-            this.chairman = EmployeeManager.selectById(chairman).getFIO();
-            this.secretary = EmployeeManager.selectById(secretary).getFIO();
+            this.chairman = EmployeeManager.selectById(chairman);
+            this.secretary = EmployeeManager.selectById(secretary);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -40,28 +50,60 @@ public class Gak {
         this.orderNumber = orderNumber;
     }
 
-    public String getOrderDate() {
+    public Date getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(String orderDate) {
+    public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
     }
 
-    public String getChairman() {
+    public Employee getChairman() {
         return chairman;
     }
 
-    public void setChairman(String chairman) {
+    public void setChairman(Employee chairman) {
         this.chairman = chairman;
     }
 
-    public String getSecretary() {
+    public String getChairmanOrderNumber() {
+        return chairmanOrderNumber;
+    }
+
+    public void setChairmanOrderNumber(String chairmanOrderNumber) {
+        this.chairmanOrderNumber = chairmanOrderNumber;
+    }
+
+    public Date getChairmanOrderDate() {
+        return chairmanOrderDate;
+    }
+
+    public void setChairmanOrderDate(Date chairmanOrderDate) {
+        this.chairmanOrderDate = chairmanOrderDate;
+    }
+
+    public Employee getSecretary() {
         return secretary;
     }
 
-    public void setSecretary(String secretary) {
+    public void setSecretary(Employee secretary) {
         this.secretary = secretary;
+    }
+
+    public String getSecretaryOrderNumber() {
+        return secretaryOrderNumber;
+    }
+
+    public void setSecretaryOrderNumber(String secretaryOrderNumber) {
+        this.secretaryOrderNumber = secretaryOrderNumber;
+    }
+
+    public Date getSecretaryOrderDate() {
+        return secretaryOrderDate;
+    }
+
+    public void setSecretaryOrderDate(Date secretaryOrderDate) {
+        this.secretaryOrderDate = secretaryOrderDate;
     }
 
     @Override
@@ -71,7 +113,11 @@ public class Gak {
                 ", orderNumber='" + orderNumber + '\'' +
                 ", orderDate='" + orderDate + '\'' +
                 ", chairman=" + chairman +
+                ", chairmanOrderNumber='" + chairmanOrderNumber + '\'' +
+                ", chairmanOrderDate=" + chairmanOrderDate +
                 ", secretary=" + secretary +
+                ", secretaryOrderNumber='" + secretaryOrderNumber + '\'' +
+                ", secretaryOrderDate=" + secretaryOrderDate +
                 '}';
     }
 }

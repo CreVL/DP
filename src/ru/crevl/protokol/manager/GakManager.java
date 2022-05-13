@@ -37,9 +37,13 @@ public class GakManager {
                 list.add( new Gak(
                         resultSet.getInt("idGak"),
                         resultSet.getString("order_number"),
-                        resultSet.getString("order_date"),
+                        new Date(resultSet.getTimestamp("order_date").getTime()),
                         resultSet.getInt("chairman"),
-                        resultSet.getInt("secretary")));
+                        resultSet.getString("chairman_order_number"),
+                        new Date(resultSet.getTimestamp("chairman_order_date").getTime()),
+                        resultSet.getInt("secretary"),
+                        resultSet.getString("secretary_order_number"),
+                        new Date(resultSet.getTimestamp("secretary_order_date").getTime())));
             }
             return list;
         }
